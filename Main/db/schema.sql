@@ -1,5 +1,41 @@
--- Create Database
+-- -- Create Database
+-- DROP DATABASE IF EXISTS employeeDB;
+-- CREATE DATABASE IF NOT EXISTS employeeDB;
+
+-- -- Use the Database
+-- USE employeeDB;
+
+-- -- Create 'department' table
+-- CREATE TABLE IF NOT EXISTS department (
+--     id INT PRIMARY KEY AUTO_INCREMENT,
+--     name VARCHAR(30) NOT NULL
+-- );
+
+-- -- Create 'role' table
+-- CREATE TABLE IF NOT EXISTS role (
+--     id INT PRIMARY KEY AUTO_INCREMENT,
+--     title VARCHAR(30) NOT NULL,
+--     salary DECIMAL(10, 2) NOT NULL,
+--     department_id INT,
+--     FOREIGN KEY (department_id) REFERENCES department(id)
+-- );
+
+-- -- Create 'employee' table
+-- CREATE TABLE IF NOT EXISTS employee (
+--     id INT PRIMARY KEY AUTO_INCREMENT,
+--     first_name VARCHAR(30) NOT NULL,
+--     last_name VARCHAR(30) NOT NULL,
+--     role_id INT,
+--     manager_id INT,
+--     FOREIGN KEY (role_id) REFERENCES role(id),
+--     FOREIGN KEY (manager_id) REFERENCES employee(id)
+-- );
+
+
+-- Drop Database if it exists
 DROP DATABASE IF EXISTS employeeDB;
+
+-- Create Database
 CREATE DATABASE IF NOT EXISTS employeeDB;
 
 -- Use the Database
@@ -17,7 +53,7 @@ CREATE TABLE IF NOT EXISTS role (
     title VARCHAR(30) NOT NULL,
     salary DECIMAL(10, 2) NOT NULL,
     department_id INT,
-    FOREIGN KEY (department_id) REFERENCES department(id)
+    FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE CASCADE
 );
 
 -- Create 'employee' table
@@ -27,6 +63,6 @@ CREATE TABLE IF NOT EXISTS employee (
     last_name VARCHAR(30) NOT NULL,
     role_id INT,
     manager_id INT,
-    FOREIGN KEY (role_id) REFERENCES role(id),
-    FOREIGN KEY (manager_id) REFERENCES employee(id)
+    FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE,
+    FOREIGN KEY (manager_id) REFERENCES employee(id) ON DELETE SET NULL
 );
