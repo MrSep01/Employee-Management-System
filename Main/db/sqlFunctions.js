@@ -11,3 +11,13 @@ class SqlFunctions {
       });
     });
   }
+
+  async viewAllDepartments() {
+    const results = await this.queryAsync('SELECT * FROM department');
+    console.log('Departments:', results);
+    return results;
+}
+
+  async viewAllRoles() {
+    return await this.queryAsync('SELECT * FROM role');
+  }
